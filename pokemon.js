@@ -1,5 +1,5 @@
 class Pokemon {
-    constructor(name, number, hp, str, def, skillList, sprite) {
+    constructor(name, number, hp, str, def, skillList, sprite, psize=100) {
         this.name = name;
         this.number = number;
         this.maxHP = hp;
@@ -9,6 +9,7 @@ class Pokemon {
         this.skills = skillList;
         this.status = "alive"
         this.sprite = sprite
+        this.psize = psize
     }
 
     takeDamage(damage){
@@ -21,9 +22,9 @@ class Pokemon {
     }
 
     getSkill(value){
-        let skillReturn = undefined;
+        let skillReturn = new Skill("Trempette", 0, 0);
         this.skills.forEach(skill => {
-            if(skill.trigger == value)
+            if(skill.trigger <= value && skillReturn.trigger < skill.trigger)
                 skillReturn = skill
         });
         return skillReturn;
@@ -46,7 +47,10 @@ class Trainer{
         this.nameZone = nameZone;
         this.hpValue = hpValue;
         this.currentPkmn = listPkmn[0]
+        this.listPkmn = listPkmn
         this.pkmnZone = pkmnZone
+        this.cast = []    
+        this.initSize = this.pkmnZone.children[0].height //Pour le changement de taille
     }
 
     udpateInfoZone(){
@@ -54,10 +58,45 @@ class Trainer{
         this.hpBar.style.width = `${(this.currentPkmn.currentHP/this.currentPkmn.maxHP)*200}px`   
         this.hpValue.innerHTML = `${this.currentPkmn.currentHP}/${this.currentPkmn.maxHP}`
     }
-    updatePokemonZone(){
-        this.pkmnZone.innerHTML = `<img src="assets/sprites/${this.currentPkmn.sprite}" alt="${this.name} pokemon">`
+    updatePokemonZone(change = false){
+        if(!change)
+            this.pkmnZone.innerHTML = `<img src="assets/sprites/${this.currentPkmn.sprite}" alt="${this.name} pokemon">`
+        else{
+            this.pkmnZone.classList.add("disapear") 
+            setTimeout(() => { 
+                this.pkmnZone.innerHTML = `<img src="assets/sprites/${this.currentPkmn.sprite}" alt="${this.name} pokemon">`
+            }, 1000);
+            setTimeout(() => { 
+                this.pkmnZone.classList.remove("disapear")
+            }, 2000);
+        }
     }
     currentPokemonAttak(target,skill){
         target.takeDamage(skill.power)
+    }
+    addToCast(value){
+        this.cast.push(value)
+        if (this.cast.length == 4)
+            return true;
+        else
+            return false;
+    }
+
+    getPowerOfCast(){
+        let pow = this.cast.reduce((acc,val) => acc + val)
+        this.cast = []
+        return pow
+    }
+
+    switchPkmn(indexNewPkmn){
+        this.currentPkmn = this.listPkmn[indexNewPkmn]
+        this.listPkmn[indexNewPkmn] = this.listPkmn[0]
+        this.listPkmn[0] = this.currentPkmn
+    }
+
+    mainPkmnIsKO(){ 
+        return this.currentPkmn.currentHP <=0 ? true:false
+        // console.log(ko)
+        // return ko
     }
 }

@@ -122,3 +122,15 @@ body{
     font-size: 24px;
     margin : 10px 105px;
 }
+
+
+.disapear {
+    animation-duration: 2s;
+    animation-name: disapear;
+  }
+  
+@keyframes disapear {
+0%  { transform : scale(1);}
+50% { transform : scale(0);}
+100%{ transform : scale(1);}
+}
