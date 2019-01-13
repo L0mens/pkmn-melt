@@ -68,8 +68,15 @@ function launchAttak(atk, def, power){
     updateTextZoneAtk(atk.currentPkmn, atk.currentPkmn.getSkill(power))
     atk.currentPokemonAttak(def.currentPkmn, atk.currentPkmn.getSkill(power))
     def.udpateInfoZone()
-    if(def.mainPkmnIsKO())       
-        switchPkmn(def)
+    if(def.mainPkmnIsKO())  
+        if (!def.isTeamKO())     
+            switchPkmn(def)
+        else
+            manageVictory(atk,def)
+}
+
+function manageVictory(winner, looser){
+    
 }
 
 function switchPkmn(trainer){
@@ -111,9 +118,6 @@ window.onkeyup = function(e) {
             if(red.addToCast(2)){
                 launchAttak(red, blue, red.getPowerOfCast())
             }
-            break    
-        case 'B':
-            switchPkmn(blue)
             break
     }
 

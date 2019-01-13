@@ -55,7 +55,7 @@ class Trainer{
 
     udpateInfoZone(){
         this.nameZone.innerHTML = this.currentPkmn.name    
-        this.hpBar.style.width = `${(this.currentPkmn.currentHP/this.currentPkmn.maxHP)*200}px`   
+        this.hpBar.style.width = `${(this.currentPkmn.currentHP/this.currentPkmn.maxHP)*300}px`   
         this.hpValue.innerHTML = `${this.currentPkmn.currentHP}/${this.currentPkmn.maxHP}`
     }
     updatePokemonZone(change = false){
@@ -96,7 +96,15 @@ class Trainer{
 
     mainPkmnIsKO(){ 
         return this.currentPkmn.currentHP <=0 ? true:false
-        // console.log(ko)
-        // return ko
     }
+
+    isTeamKO(){
+        let yes = true
+        this.listPkmn.forEach( pkmn => {
+            if(pkmn.currentHP > 0)
+                yes = false
+        })
+        return yes
+    }
+    
 }
