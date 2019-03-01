@@ -1,5 +1,5 @@
 class Pokemon {
-    constructor(name, number, hp, str, def, skillList, sprite, psize=100) {
+    constructor(name, number, hp, str, def, skillList, sprite, psize=1) {
         this.name = name;
         this.number = number;
         this.maxHP = hp;
@@ -65,11 +65,16 @@ class Trainer{
             this.pkmnZone.classList.add("disapear") 
             setTimeout(() => { 
                 this.pkmnZone.innerHTML = `<img src="assets/sprites/${this.currentPkmn.sprite}" alt="${this.name} pokemon">`
+                this.pkmnZone.children[0].style.transform = `scale(${this.currentPkmn.psize}, ${this.currentPkmn.psize})`
             }, 1000);
             setTimeout(() => { 
+                
                 this.pkmnZone.classList.remove("disapear")
+                
             }, 2000);
         }
+        this.pkmnZone.children[0].style.transform = `scale(${this.currentPkmn.psize}, ${this.currentPkmn.psize})`
+        console.log(this.psize)
     }
     currentPokemonAttak(target,skill){
         target.takeDamage(skill.power)
@@ -88,9 +93,10 @@ class Trainer{
         return pow
     }
 
-    switchPkmn(indexNewPkmn){
+    switchPkmn(indexNewPkmn,){
         this.currentPkmn = this.listPkmn[indexNewPkmn]
-        this.listPkmn[indexNewPkmn] = this.listPkmn[0]
+        this.listPkmn.push(this.listPkmn[0])
+        this.listPkmn.splice(indexNewPkmn,1)
         this.listPkmn[0] = this.currentPkmn
     }
 
@@ -105,6 +111,15 @@ class Trainer{
                 yes = false
         })
         return yes
+    }
+
+    nextToFight(){
+        var index = 0;
+        listPkmn.forEach(p => {
+            if(p.status == "ko")
+                index++
+        })
+        return index;
     }
     
 }

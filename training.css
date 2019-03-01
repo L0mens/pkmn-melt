@@ -1,0 +1,113 @@
+@font-face {
+    font-family: pkmnFont;
+    src: url(assets/pkmnfont.ttf);
+}
+body{
+    margin:0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.train-zone{
+    width: 500px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pokemon-zone{
+    flex-grow: 3 ; 
+}
+
+.pokemon-zone img{
+    width: 500px;
+    position: absolute;
+    bottom: 40%;
+}
+
+.pkmn-level-1{
+    width: 200px !important;
+    transform: translateX(75%);
+}
+
+.pkmn-level-2{
+    width: 300px !important;
+    transform: translateX(30%);
+}
+
+.pkmn-level-3{
+    width: 500px !important;
+}
+
+.text-zone{
+    flex-grow: 1;
+    width: 100%;
+    word-spacing: 20px;
+    margin-top: 50px; 
+}
+#text-zone p{
+    font-family: pkmnFont;
+    font-size: 26px;
+    margin : 40px 20px;
+    line-height: 50px;
+    max-width: 500px;
+}
+
+.pkmn-name{
+    font-size: 32px;
+    margin: 350px 50px 15px;
+}
+.pkmn-lvl{
+    font-size: 32px;
+    margin: 5px 200px;
+}
+.pkmn-text{
+    font-family: pkmnFont;
+    text-transform: uppercase;
+}
+.pkmn-hp{
+    margin: 5px 50px;
+    position: relative;
+}
+.hp-bar{
+    width: 300px;
+    height: 12px;
+    background: darkcyan;
+    border-radius:5px; 
+    transition: width 2s;
+}
+
+.hp-text{
+    display: inline;
+    margin-right: 15px;
+    font-size: 32px;
+}
+
+.hp-border{
+    display: inline-flex;
+    position: absolute;
+    background: rgba(0,0,0,0);
+    border: 2px solid black;
+    border-radius:15px; 
+    bottom: 5px;
+    width: 300px;
+}
+
+.hp-value{
+    font-size: 32px;
+    margin : 10px 145px;
+}
+
+#text-zone{
+    width: 80%;
+    height: 15%;
+    border: 1px black groove;
+    word-spacing: 20px;
+    background: white;
+    margin-top: 50px; 
+    position: absolute;
+    bottom: 10px;
+    font-family: pkmnFont;
+    font-size: 22px;
+    display: none;
+}

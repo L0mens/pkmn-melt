@@ -13,6 +13,13 @@ let gyaradosSkill = [
     new Skill("Crocs givre", 65, 5)
 ]
 let gyarados = new Pokemon("Leviator", 149, 200, 15,15 ,gyaradosSkill, "gyarados.gif")
+let blastoiseSkill = [
+    new Skill("Exploforce", 120, 8),
+    new Skill("Hydrocanon", 110, 7),
+    new Skill("Ebullition", 80, 6),
+    new Skill("Vibraqua", 65, 5)
+]
+let blastoise = new Pokemon("Tortank", 149, 200, 15,15 ,blastoiseSkill, "blastoise.gif", 0.8)
 //Team Red (back sprites)
 let florizzarSkill = [
     new Skill("Lance Soleil", 120, 7),
@@ -27,8 +34,14 @@ let pikachuSkill = [
     new Skill("Queue de fer", 100, 6),
     new Skill("Vive Attaque", 40, 4)
 ]
-let pikachuR = new Pokemon("Pikachu", 003, 200, 15,15 ,pikachuSkill, "025b.gif")
-
+let pikachuR = new Pokemon("Pikachu", 003, 200, 15,15 ,pikachuSkill, "025b.gif", 0.6)
+let charizardSkill = [
+    new Skill("Boutefeu", 120, 8),
+    new Skill("Feu d'enfer", 100, 7),
+    new Skill("Lance flame", 90, 6),
+    new Skill("Crocs feu", 65, 5)
+]
+let charizardR = new Pokemon("Dracofeu", 149, 200, 15,15 ,charizardSkill, "006b.gif", 1.3)
 
 const enPkmnZoneImg = document.getElementById("en-pokemon-zone")
 const eninfoZone = document.getElementById(`en-info-zone`)
@@ -43,8 +56,8 @@ const plhpBar = plinfoZone.getElementsByClassName("hp-bar")[0]
 const plpkmnName = plinfoZone.getElementsByClassName("pkmn-name")[0]
 
 
-const teamRed = [florizzareR , pikachuR]
-const teamBlue = [dragonite, gyarados]
+const teamRed = [charizardR , pikachuR]
+const teamBlue = [blastoise, dragonite, gyarados]
 let red = new Trainer("Red", teamRed, plhpBar, plpkmnName, plhpValue, plPkmnZoneImg)
 let blue = new Trainer("Blue", teamBlue, enhpBar, enpkmnName, enhpValue, enPkmnZoneImg)
 
@@ -76,7 +89,7 @@ function launchAttak(atk, def, power){
 }
 
 function manageVictory(winner, looser){
-    
+
 }
 
 function switchPkmn(trainer){

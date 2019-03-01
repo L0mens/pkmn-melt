@@ -5,6 +5,7 @@
 
 body{
     margin : 0;
+    background: lemonchiffon;
 }
 
 #combat-scene{
@@ -70,6 +71,8 @@ body{
     height: 26%;
     border: 1px black groove;
     word-spacing: 20px;
+    background: white;
+    margin-top: 50px; 
 }
 #text-zone p{
     font-family: pkmnFont;
